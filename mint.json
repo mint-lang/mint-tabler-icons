@@ -1,0 +1,7 @@
+{
+  "name": "mint-tabler-icons",
+  "mint-version": "0.15.3 <= v < 1.0.0",
+  "source-directories": [
+    "source"
+  ]
+}

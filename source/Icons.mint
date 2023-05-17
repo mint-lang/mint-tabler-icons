@@ -1898,7 +1898,7 @@ module TablerIcons {
       </g>
     </svg>
 
-  const 2FA =
+  const TWOFA =
     <svg viewBox="0 0 24 24">
       <g style="stroke-width: var(--tabler-stroke-width);" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none">
         <path d="M7 16h-4l3.47 -4.66a2 2 0 1 0 -3.47 -1.54"/>
@@ -8485,7 +8485,7 @@ module TablerIcons {
       </g>
     </svg>
 
-  const 3D_CUBE_SPHERE =
+  const CUBE_SPHERE =
     <svg viewBox="0 0 24 24">
       <g style="stroke-width: var(--tabler-stroke-width);" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none">
         <path d="M6 17.6l-2 -1.1v-2.5"/>

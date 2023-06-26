@@ -24,7 +24,25 @@ def copy(node, xml)
   end
 end
 
-Dir.glob("tabler-icons/icons/*") do |file|
+RENAME = {
+  "123"                => "ONE_TWO_THREE",
+  "24_HOURS"           => "TWENY_FOUR_HOURS",
+  "2FA"                => "TWO_FA",
+  "360_VIEW"           => "THREE_SIXTY_VIEW",
+  "360"                => "THREE_SIXTY",
+  "3D_CUBE_SPHERE_OFF" => "THREE_CUBE_SPHERE_OFF",
+  "3D_CUBE_SPHERE"     => "THREE_CUBE_SPHERE",
+  "3D_ROTATE"          => "THREE_ROTATE",
+}
+
+Dir.glob("tabler-icons/icons/*").to_a.sort.each do |file|
+  name =
+    File.basename(file, ".svg").upcase.gsub("-", "_")
+
+  if name[0].ascii_number?
+    name = RENAME[name]
+  end
+
   document = XML.parse(File.read(file))
 
   if svg = document.first_element_child
@@ -42,9 +60,6 @@ Dir.glob("tabler-icons/icons/*") do |file|
         end
       end
     end
-
-    name =
-      File.basename(file, ".svg").upcase.gsub("-", "_")
 
     html =
       string.sub("<?xml version=\"1.0\"?>\n", "").indent
@@ -86,7 +101,7 @@ main =
     fun render : Html {
       <div::base>
         <input
-          onInput={(event : Html.Event) { next { strokeWidth = Dom.getValue(event.target) } }}
+          onInput={(event : Html.Event) { next { strokeWidth: Dom.getValue(event.target) } }}
           value={strokeWidth}
           step="0.25"
           type="range"

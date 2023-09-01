@@ -26,7 +26,8 @@ end
 
 RENAME = {
   "123"                => "ONE_TWO_THREE",
-  "24_HOURS"           => "TWENY_FOUR_HOURS",
+  "12_HOURS"           => "TWELVE_HOURS",
+  "24_HOURS"           => "TWENTY_FOUR_HOURS",
   "2FA"                => "TWO_FA",
   "360_VIEW"           => "THREE_SIXTY_VIEW",
   "360"                => "THREE_SIXTY",

@@ -36,13 +36,22 @@ RENAME = {
   "3D_ROTATE"          => "THREE_ROTATE",
 }
 
-Dir.glob("tabler-icons/icons/*").to_a.sort.each do |file|
-  name =
+Dir.glob("tabler-icons/icons/**/*").to_a.sort.each do |file|
+  base_name =
     File.basename(file, ".svg").upcase.gsub("-", "_")
+
+  name =
+    if file.includes?("filled")
+      "#{base_name}_FILLED"
+    else
+      base_name
+    end
 
   if name[0].ascii_number?
     name = RENAME[name]
   end
+
+  next if File.directory?(file)
 
   document = XML.parse(File.read(file))
 
@@ -51,10 +60,13 @@ Dir.glob("tabler-icons/icons/*").to_a.sort.each do |file|
       xml.element("svg") do
         xml.attribute("viewBox", svg["viewBox"])
         xml.element("g") do
-          xml.attribute("style", "stroke-width: var(--tabler-stroke-width);")
-          xml.attribute("stroke-linejoin", svg["stroke-linejoin"])
-          xml.attribute("stroke-linecap", svg["stroke-linecap"])
-          xml.attribute("stroke", "currentColor")
+          if file.includes?("outline")
+            xml.attribute("style", "stroke-width: var(--tabler-stroke-width);")
+            xml.attribute("stroke-linejoin", svg["stroke-linejoin"])
+            xml.attribute("stroke-linecap", svg["stroke-linecap"])
+            xml.attribute("stroke", "currentColor")
+          end
+
           xml.attribute("fill", svg["fill"])
 
           copy(svg, xml)

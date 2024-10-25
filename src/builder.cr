@@ -93,7 +93,7 @@ source =
 mainContent =
   icons
     .keys
-    .map { |name| "<{ TablerIcons:#{name} }>" }
+    .map { |name| "TablerIcons.#{name}" }
     .join("\n")
     .indent(8)
 
